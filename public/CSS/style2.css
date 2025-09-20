@@ -1,0 +1,86 @@
+.navbar {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.f-info {
+  background-color: #f1f1f1;
+  font-size: 0.9rem;
+  color: #555;
+}
+.page-home .listing-card {
+  transition: transform 0.3s ease;
+}
+
+.page-home .listing-card:hover {
+  transform: scale(1.02);
+}
+.review-card {
+  background-color: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.review-card h5 {
+  font-weight: 600;
+  color: #fe424d;
+}
+
+.review-card p {
+  font-size: 0.95rem;
+  color: #444;
+}
+
+.starability-result[data-rating]::before {
+  color: #fe424d;
+}
+.form-section {
+  background-color: #f9f9f9;
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+}
+
+.form-label {
+  font-weight: 500;
+  color: #333;
+}
+
+.form-control:focus {
+  border-color: #fe424d;
+  box-shadow: 0 0 0 0.2rem rgba(254, 66, 77, 0.25);
+}
+.show-card {
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  border-radius: 1rem;
+  background-color: #fff;
+}
+
+.show-img {
+  border-radius: 1rem 1rem 0 0;
+  object-fit: cover;
+}
+
+.card-body h5 {
+  font-weight: 600;
+  color: #fe424d;
+}
+
+.card-body p {
+  font-size: 1rem;
+  color: #555;
+}
+.hero-banner {
+  background: url("/images/hero.jpg") center/cover no-repeat;
+  height: 60vh;
+  border-radius: 1rem;
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 2rem;
+  font-weight: 600;
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.6);
+}
