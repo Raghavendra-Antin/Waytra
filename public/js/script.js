@@ -20,12 +20,3 @@
     );
   });
 })();
-
-document.addEventListener("DOMContentLoaded", () => {
-  const toggleBtn = document.getElementById("filterToggle");
-  const filters = document.getElementById("filters");
-
-  toggleBtn.addEventListener("click", () => {
-    filters.classList.toggle("show");
-  });
-});
