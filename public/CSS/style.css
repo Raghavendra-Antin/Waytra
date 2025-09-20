@@ -241,3 +241,45 @@ body {
 #filters::-webkit-scrollbar {
   display: none; /* Chrome, Safari */
 }
+
+/* added */
+/* Base icon color */
+.filter i {
+  color: red;
+  font-size: 1.5rem;
+}
+
+/* Mobile dropdown styling */
+@media (max-width: 576px) {
+  #filters {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background-color: #fff;
+    border-radius: 0.5rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .filter {
+    width: 100%;
+    text-align: center;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #eee;
+  }
+
+  .filter:last-child {
+    border-bottom: none;
+  }
+
+  .filter p {
+    font-size: 0.9rem;
+    margin-top: 0.3rem;
+    color: #333;
+  }
+
+  #filterToggle {
+    width: 100%;
+    font-size: 1rem;
+  }
+}
