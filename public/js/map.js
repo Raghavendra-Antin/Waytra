@@ -1,6 +1,7 @@
-mapboxgl.accessToken = mapToken;
+mapboxgl.accessToken = mapToken; /* Replace with your Mapbox access token */
 const map = new mapboxgl.Map({
   container: "map", // container ID
+  style: "mapbox://styles/mapbox/streets-v12", // style URL
   center: listing.geometry.coordinates, // starting position [lng, lat]. Note that lat must be set between -90 and 90
   zoom: 9, // starting zoom
 });
@@ -12,5 +13,4 @@ const marker = new mapboxgl.Marker({ color: "red" })
       `<h4>${listing.title}</h4><p>exact location provided after booking</p>`
     )
   )
-
   .addTo(map);
