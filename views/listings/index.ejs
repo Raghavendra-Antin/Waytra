@@ -4,19 +4,31 @@
     #filters {
       display: flex;
       flex-wrap: wrap;
+      justify-content: flex-start;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem 0;
     }
     .filter {
       text-align: center;
-      margin-right: 2rem;
-      margin-top: 2rem;
       opacity: 0.8;
+      min-width: 80px;
+      flex-shrink: 0;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-decoration: none;
+      color: inherit;
+      display: block;
     }
     .filter:hover {
       opacity: 1;
-      cursor: pointer;
+      transform: translateY(-2px);
+      color: inherit;
+      text-decoration: none;
     }
     .filter p {
       font-size: 0.8rem;
+      margin: 0.5rem 0;
     }
     .tax-info {
       display: none;
@@ -31,49 +43,83 @@
       align-items: center;
       margin-top: 1.5rem;
     }
+
+    /* Responsive filters */
+    @media (max-width: 767px) {
+      #filters {
+        display: none !important;
+      }
+
+      .filter {
+        margin-right: 1rem;
+        margin-top: 1rem;
+        min-width: 70px;
+      }
+
+      .tax-toggle {
+        margin-left: 0;
+        margin-top: 1rem;
+        width: 100%;
+        justify-content: center;
+      }
+    }
+
+    /* Tablet and larger screens - allow wrapping */
+    @media (min-width: 768px) {
+      #filters {
+        flex-wrap: wrap;
+        justify-content: flex-start;
+      }
+
+      .filter {
+        flex: 0 0 auto;
+        margin-bottom: 0.5rem;
+      }
+    }
   </style>
 
-  <div id="filters">
-    <div class="filter">
+  <!-- Desktop Categories (visible on md and up) -->
+  <div id="filters" class="d-none d-md-flex">
+    <a href="/listings/working" class="filter">
       <div><i class="fa-solid fa-fire"></i></div>
-      <p>Treanding</p>
-    </div>
-    <div class="filter">
+      <p>Trending</p>
+    </a>
+    <a href="/listings/working" class="filter">
       <div><i class="fa-solid fa-mountain-city"></i></div>
       <p>Iconic Cities</p>
-    </div>
-    <div class="filter">
+    </a>
+    <a href="/listings/working" class="filter">
       <div><i class="fa-solid fa-mountain"></i></div>
       <p>Mountains</p>
-    </div>
-    <div class="filter">
+    </a>
+    <a href="/listings/working" class="filter">
       <div><i class="fa-brands fa-fort-awesome"></i></div>
-      <p>castels</p>
-    </div>
-    <div class="filter">
+      <p>Castles</p>
+    </a>
+    <a href="/listings/working" class="filter">
       <div><i class="fa-solid fa-person-swimming"></i></div>
       <p>Amazing Pools</p>
-    </div>
-    <div class="filter">
+    </a>
+    <a href="/listings/working" class="filter">
       <div><i class="fa-solid fa-campground"></i></div>
       <p>Camping</p>
-    </div>
-    <div class="filter">
+    </a>
+    <a href="/listings/working" class="filter">
       <div><i class="fa-solid fa-tractor"></i></div>
       <p>Farms</p>
-    </div>
-    <div class="filter">
+    </a>
+    <a href="/listings/working" class="filter">
       <div><i class="fa-brands fa-galactic-republic"></i></div>
       <p>Arctic</p>
-    </div>
-    <div class="filter">
+    </a>
+    <a href="/listings/working" class="filter">
       <div><i class="fa-solid fa-igloo"></i></div>
       <p>Domes</p>
-    </div>
-    <div class="filter">
+    </a>
+    <a href="/listings/working" class="filter">
       <div><i class="fa-solid fa-gamepad"></i></div>
       <p>Play</p>
-    </div>
+    </a>
     <div class="tax-toggle">
       <div class="form-check-reverse form-switch">
         <input
@@ -88,6 +134,7 @@
       </div>
     </div>
   </div>
+
   <div class="row row-cols-lg-3 row row-cols-md-2 row row-cols-sm-1 mt-3">
     <% for(let listing of allListing){ %>
     <a href="/listings/<%=listing._id%>" class="listing-link">

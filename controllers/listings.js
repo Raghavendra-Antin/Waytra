@@ -8,6 +8,10 @@ module.exports.index = async (req, res) => {
   res.render("listings/index.ejs", { allListing });
 };
 
+module.exports.working = (req, res) => {
+  res.render("listings/working.ejs");
+};
+
 module.exports.renderNewForm = (req, res) => {
   // let { id } = req.params;
   res.render("listings/new.ejs");

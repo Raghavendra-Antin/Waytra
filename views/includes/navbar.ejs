@@ -1,6 +1,6 @@
 <style>
   .btn-search {
-    background-color: #ff385c; /* Updated color */
+    background-color: #ff385c;
     color: white;
     font-weight: 500;
     border-radius: 999px;
@@ -17,29 +17,138 @@
     margin-right: 0.5rem;
     border-radius: 35px;
   }
+
+  /* Mobile filter items styling */
+  .mobile-filter-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.75rem 0.5rem;
+    background-color: #f8f9fa;
+    border-radius: 0.5rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: 1px solid #e9ecef;
+    text-decoration: none;
+    color: #495057;
+  }
+
+  .mobile-filter-item:hover {
+    background-color: #e9ecef;
+    transform: translateY(-1px);
+    color: #fe424d;
+  }
+
+  .mobile-filter-item i {
+    font-size: 1.2rem;
+    color: #fe424d;
+    margin-bottom: 0.25rem;
+  }
+
+  .mobile-filter-item span {
+    font-size: 0.75rem;
+    font-weight: 500;
+  }
+
+  /* Mobile user actions styling */
+  .mobile-user-actions {
+    border-bottom: 1px solid #e9ecef;
+    padding-bottom: 1rem;
+  }
+
+  .mobile-user-actions .nav-link {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #f0f0f0;
+  }
+
+  .mobile-user-actions .nav-link:last-child {
+    border-bottom: none;
+  }
+
+  /* Responsive search bar */
+  @media (max-width: 767px) {
+    .navbar-nav.ms-auto form {
+      min-width: 200px !important;
+      margin: 0.5rem 0;
+    }
+  }
+
+  /* Right-to-left slide animation */
+  @media (max-width: 767px) {
+    .navbar-collapse {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 80%;
+      height: 100vh;
+      background-color: white;
+      z-index: 1050;
+      transition: right 0.3s ease-in-out;
+      box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+      padding: 2rem 1rem;
+      overflow-y: auto;
+    }
+
+    .navbar-collapse.show {
+      right: 0;
+    }
+
+    .navbar-collapse::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: -1;
+      opacity: 0;
+      transition: opacity 0.3s ease-in-out;
+    }
+
+    .navbar-collapse.show::before {
+      opacity: 1;
+    }
+
+    .navbar-toggler {
+      z-index: 1051;
+    }
+  }
 </style>
 
 <nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top">
   <div class="container-fluid">
-    <a class="navbar-brand" href="/listings"
-      ><i class="fa-solid fa-bowl-food"></i
-    ></a>
+    <!-- Logo (Left) -->
+    <a class="navbar-brand" href="/listings">
+      <i class="fa-solid fa-bowl-food"></i>
+    </a>
+
+    <!-- Toggle Button (Right) - Mobile Only -->
     <button
-      class="navbar-toggler"
+      class="navbar-toggler d-md-none"
       type="button"
       data-bs-toggle="collapse"
       data-bs-target="#navbarNavAltMarkup"
+      aria-controls="navbarNavAltMarkup"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
     >
       <span class="navbar-toggler-icon"></span>
     </button>
+
+    <!-- Collapsible Menu -->
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav">
+      <!-- Desktop Navigation -->
+      <div class="navbar-nav d-none d-md-flex">
         <a class="nav-link" href="/listings">Explore</a>
       </div>
-      <div class="navbar-nav ms-auto">
+
+      <!-- Desktop Search Box (Center) -->
+      <div class="d-none d-md-flex flex-grow-1 justify-content-center">
         <form
           class="d-flex align-items-center bg-white rounded-pill px-3 py-2 shadow-sm"
-          style="gap: 0.5rem; min-width: 300px"
+          style="gap: 0.5rem; min-width: 300px; max-width: 400px"
         >
           <i class="fa-solid fa-magnifying-glass text-muted"></i>
           <input
@@ -54,7 +163,9 @@
           </button>
         </form>
       </div>
-      <div class="navbar-nav ms-auto">
+
+      <!-- Desktop User Actions (Right) -->
+      <div class="navbar-nav ms-auto d-none d-md-flex">
         <a class="nav-link" href="/listings/new">Airbnb your home</a>
         <% if(!currUser){ %>
         <a class="nav-link" href="/signup"><b>Signup</b></a>
@@ -62,6 +173,107 @@
         <% } else { %>
         <a class="nav-link" href="/logout"><b>Logout</b></a>
         <% } %>
+      </div>
+
+      <!-- Mobile/Tablet Navigation with Categories -->
+      <div class="navbar-nav d-md-none w-100">
+        <!-- Mobile User Actions at Top -->
+        <div class="mobile-user-actions mb-3">
+          <a class="nav-link" href="/listings/new">Airbnb your home</a>
+          <% if(!currUser){ %>
+          <a class="nav-link" href="/signup"><b>Signup</b></a>
+          <a class="nav-link" href="/login"><b>Login</b></a>
+          <% } else { %>
+          <a class="nav-link" href="/logout"><b>Logout</b></a>
+          <% } %>
+        </div>
+
+        <a class="nav-link" href="/listings">Explore</a>
+
+        <!-- Mobile Search Form -->
+        <form
+          class="d-flex align-items-center bg-white rounded-pill px-3 py-2 shadow-sm mt-2 mb-3"
+          style="gap: 0.5rem; width: 100%"
+        >
+          <i class="fa-solid fa-magnifying-glass text-muted"></i>
+          <input
+            class="form-control border-0 shadow-none"
+            type="search"
+            placeholder="Where to?"
+            aria-label="Search"
+            style="flex: 1"
+          />
+          <button class="btn btn-search rounded-pill px-3" type="submit">
+            Search
+          </button>
+        </form>
+
+        <!-- Mobile Categories -->
+        <div class="mobile-categories mb-3">
+          <h6 class="text-muted mb-2">Categories</h6>
+          <div class="row g-2">
+            <div class="col-6">
+              <a href="/listings/working" class="mobile-filter-item">
+                <i class="fa-solid fa-fire"></i>
+                <span>Trending</span>
+              </a>
+            </div>
+            <div class="col-6">
+              <a href="/listings/working" class="mobile-filter-item">
+                <i class="fa-solid fa-mountain-city"></i>
+                <span>Iconic Cities</span>
+              </a>
+            </div>
+            <div class="col-6">
+              <a href="/listings/working" class="mobile-filter-item">
+                <i class="fa-solid fa-mountain"></i>
+                <span>Mountains</span>
+              </a>
+            </div>
+            <div class="col-6">
+              <a href="/listings/working" class="mobile-filter-item">
+                <i class="fa-brands fa-fort-awesome"></i>
+                <span>Castles</span>
+              </a>
+            </div>
+            <div class="col-6">
+              <a href="/listings/working" class="mobile-filter-item">
+                <i class="fa-solid fa-person-swimming"></i>
+                <span>Amazing Pools</span>
+              </a>
+            </div>
+            <div class="col-6">
+              <a href="/listings/working" class="mobile-filter-item">
+                <i class="fa-solid fa-campground"></i>
+                <span>Camping</span>
+              </a>
+            </div>
+            <div class="col-6">
+              <a href="/listings/working" class="mobile-filter-item">
+                <i class="fa-solid fa-tractor"></i>
+                <span>Farms</span>
+              </a>
+            </div>
+            <div class="col-6">
+              <a href="/listings/working" class="mobile-filter-item">
+                <i class="fa-brands fa-galactic-republic"></i>
+                <span>Arctic</span>
+              </a>
+            </div>
+            <div class="col-6">
+              <a href="/listings/working" class="mobile-filter-item">
+                <i class="fa-solid fa-igloo"></i>
+                <span>Domes</span>
+              </a>
+            </div>
+            <div class="col-6">
+              <a href="/listings/working" class="mobile-filter-item">
+                <i class="fa-solid fa-gamepad"></i>
+                <span>Play</span>
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
